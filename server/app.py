@@ -1,12 +1,16 @@
-def my_func(name):
-    if name == "Deekayy":
-        print("Hello Deekayy")
-    else:
-        print("Hello Stranger")
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
-    for i in range(3):
-        print(i + 1, " seconds has passed")
+# create the Flask app
+app = Flask(__name__)
+CORS(app)
 
+# configure the database
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///phonebook.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db = SQLAlchemy(app)
 
-my_func("Deekayy")
-my_func("John")
+# run the server
+if __name__ == "__main__":
+    app.run(debug=True)
