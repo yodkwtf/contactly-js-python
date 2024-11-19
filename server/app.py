@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 # configure the database
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///phonebook.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///contact.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
