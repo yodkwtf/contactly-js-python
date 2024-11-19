@@ -1,29 +1,48 @@
-# Virtual environment
-.venv/
-venv/
-venv*/
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.db
 .Python
-bin/
-include/
-lib/
-lib64/
-pip-selfcheck.json
+venv/
+.venv/
+env/
+*.egg-info/
+pip-log.txt
+pip-delete-this-directory.txt
 
-# IDE files
+# Flask specific
+instance/
+*.log
+*.env
+*.flaskenv
+config.py
+
+# React
+node_modules/
+*.log
+build/
+dist/
+.env
+.DS_Store
+
+# Editor and System Files
 .vscode/
 .idea/
-*.iml
-*.pyc
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.orig
+Thumbs.db
+desktop.ini
 
-# Environment variables
-.env
+# MacOS
+.DS_Store
 
-# Database
-contact.db
-
-# Compiled Python files
-*.pyc
-
-# Dependency directories
-node_modules/
-/dist/
+# Windows
+Thumbs.db
+ehthumbs.db
