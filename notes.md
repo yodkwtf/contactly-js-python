@@ -50,3 +50,13 @@ Run the Flask app:
 ```bash
 flask run
 ```
+
+Run the app with hot reload:
+
+```bash
+flask run --reload
+```
+
+## Resources
+
+1. [Random User Avatar Generator](https://avatar-placeholder.iran.liara.run/document)
