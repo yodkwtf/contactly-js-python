@@ -16,7 +16,15 @@ def get_contacts():
 def create_contact():
     try:
         data = request.get_json()
+
+        # validations
+        required_fields = ["name", "phone", "occupation", "address"]
+        for field in required_fields:
+            if field not in data:
+                return jsonify({"error": f"Missing field: {field}"}), 400
+
         name = data.get("name")
+        phone = data.get("phone")
         occupation = data.get("occupation")
         address = data.get("address")
         gender = data.get("gender")
@@ -34,6 +42,7 @@ def create_contact():
         # create a new contact entry
         new_contact = Contact(
             name=name,
+            phone=phone,
             occupation=occupation,
             address=address,
             gender=gender,
@@ -42,7 +51,31 @@ def create_contact():
 
         db.session.add(new_contact)
         db.session.commit()
-        return jsonify(new_contact.to_json()), 201
+        return (
+            jsonify(
+                {
+                    "success": True,
+                    "data": {
+                        "message": "Contact added successfully",
+                        "contact": new_contact.to_json(),
+                        "error": None,
+                    },
+                }
+            ),
+            201,
+        )
     except Exception as e:
         db.session.rollback()
-        return jsonify({"error": str(e)}), 500
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "data": {
+                        "message": "Failed to add contact",
+                        "contact": None,
+                        "error": str(e),
+                    },
+                }
+            ),
+            500,
+        )
