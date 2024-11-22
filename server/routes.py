@@ -21,7 +21,19 @@ def create_contact():
         required_fields = ["name", "phone", "occupation", "address"]
         for field in required_fields:
             if field not in data:
-                return jsonify({"error": f"Missing field: {field}"}), 400
+                return (
+                    jsonify(
+                        {
+                            "success": False,
+                            "data": {
+                                "message": f"{field} is required",
+                                "contact": None,
+                                "error": None,
+                            },
+                        }
+                    ),
+                    400,
+                )
 
         name = data.get("name")
         phone = data.get("phone")
@@ -73,6 +85,55 @@ def create_contact():
                     "data": {
                         "message": "Failed to add contact",
                         "contact": None,
+                        "error": str(e),
+                    },
+                }
+            ),
+            500,
+        )
+
+
+# Delete a contact entry
+@app.route("/api/contacts/<int:contact_id>", methods=["DELETE"])
+def delete_contact(contact_id):
+    try:
+        contact = Contact.query.get(contact_id)
+        if contact is None:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "data": {
+                            "message": "Contact not found",
+                            "error": None,
+                        },
+                    }
+                ),
+                404,
+            )
+
+        db.session.delete(contact)
+        db.session.commit()
+        return (
+            jsonify(
+                {
+                    "success": True,
+                    "data": {
+                        "message": "Contact deleted successfully",
+                        "error": None,
+                    },
+                }
+            ),
+            200,
+        )
+    except Exception as e:
+        db.session.rollback()
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "data": {
+                        "message": "Failed to delete contact",
                         "error": str(e),
                     },
                 }
