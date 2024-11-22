@@ -140,3 +140,61 @@ def delete_contact(contact_id):
             ),
             500,
         )
+
+
+# Update a contact entry
+@app.route("/api/contacts/<int:contact_id>", methods=["PATCH"])
+def update_contact(contact_id):
+    try:
+        contact = Contact.query.get(contact_id)
+        if contact is None:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "data": {
+                            "message": "Contact not found",
+                            "contact": None,
+                            "error": None,
+                        },
+                    }
+                ),
+                404,
+            )
+
+        data = request.get_json()
+
+        contact.name = data.get("name", contact.name)
+        contact.phone = data.get("phone", contact.phone)
+        contact.occupation = data.get("occupation", contact.occupation)
+        contact.address = data.get("address", contact.address)
+
+        db.session.commit()
+        return (
+            jsonify(
+                {
+                    "success": True,
+                    "data": {
+                        "message": "Contact updated successfully",
+                        "contact": contact.to_json(),
+                        "error": None,
+                    },
+                }
+            ),
+            200,
+        )
+    except Exception as e:
+        db.session.rollback()
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "data": {
+                        "message": "Failed to update contact",
+                        "contact": None,
+                        "error": str(e),
+                    },
+                }
+            ),
+            500,
+        )
