@@ -1,7 +1,9 @@
+import { Button } from '@chakra-ui/react';
+
 function App() {
   return (
     <>
-      <h1>Hello from Contactly</h1>
+      <Button>Hello from Contactly</Button>
     </>
   );
 }
