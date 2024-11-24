@@ -1,10 +1,16 @@
-import { Button } from '@chakra-ui/react';
+import { Button, Container, Stack } from '@chakra-ui/react';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <>
-      <Button>Hello from Contactly</Button>
-    </>
+    <Stack minH="100vh">
+      <Navbar />
+      <Container maxW="1200px" my={8} flex="1">
+        <Button colorScheme="teal">Click me</Button>
+      </Container>
+      <Footer />
+    </Stack>
   );
 }
 
