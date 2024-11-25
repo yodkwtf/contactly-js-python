@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { IoMoon } from 'react-icons/io5';
 import { FaSun as LuSun } from 'react-icons/fa';
+import AddContactModal from './AddContactModal';
 
 const Navbar = () => {
   const { toggleColorMode } = useColorMode();
@@ -24,15 +25,11 @@ const Navbar = () => {
             Contactly
           </Box>
           <Spacer />
-          <Button colorScheme="teal" variant="outline" mr={4}>
-            Add Contact
-          </Button>
-          <Button
-            leftIcon={useColorModeValue(<IoMoon />, <LuSun />)}
-            onClick={toggleColorMode}
-            bg={themeBtnBg}
-          >
-            {useColorModeValue('Dark', 'Light')}
+
+          <AddContactModal />
+
+          <Button onClick={toggleColorMode} bg={themeBtnBg}>
+            {useColorModeValue(<IoMoon />, <LuSun />)}
           </Button>
         </Flex>
       </Container>
