@@ -7,7 +7,10 @@ const Footer = () => {
     <Box as="footer" py={4} bg={bg} color="white">
       <Stack direction="row" spacing={4} justify="center">
         <Link href="/">Home</Link>
-        <Link href="https://github.com/yodkwtf/contactly-js-python" isExternal>
+        <Link
+          href="https://github.com/yodkwtf/contactly-react-flask"
+          isExternal
+        >
           Source Code
         </Link>
         <Link href="https://yodkwtf.com" isExternal>
