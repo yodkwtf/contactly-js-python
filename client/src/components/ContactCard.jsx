@@ -7,7 +7,8 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import { FaTrash as DeleteIcon, FaEdit as EditIcon } from 'react-icons/fa';
+import { FaTrash as DeleteIcon } from 'react-icons/fa';
+import EditContactModal from './EditContactModal';
 
 const ContactCard = ({ contact }) => {
   const { name, phone, occupation, address, gender, img_url } = contact;
@@ -46,13 +47,7 @@ const ContactCard = ({ contact }) => {
           </Flex>
 
           <HStack spacing={0}>
-            <IconButton
-              icon={<EditIcon />}
-              colorScheme="teal"
-              variant="ghost"
-              size="sm"
-              aria-label="Edit"
-            />
+            <EditContactModal contact={contact} />
             <IconButton
               icon={<DeleteIcon />}
               colorScheme="red"
@@ -64,9 +59,11 @@ const ContactCard = ({ contact }) => {
         </Flex>
 
         <Box w="100%">
-          <Text fontSize={'sm'}>Job: {occupation}</Text>
           <Text fontSize={'sm'}>
-            Address: <em>{address}</em>
+            <strong>Occupation:</strong> {occupation}
+          </Text>
+          <Text fontSize={'sm'}>
+            <strong>Address:</strong> {address}
           </Text>
         </Box>
       </VStack>

@@ -59,10 +59,9 @@ const AddContactModal = () => {
           </ModalBody>
 
           <ModalFooter>
-            <Button mr={3} onClick={onClose}>
+            <Button mr={3} border={true} onClick={onClose}>
               Close
             </Button>
-
             <Button colorScheme="teal">Add</Button>
           </ModalFooter>
         </ModalContent>
