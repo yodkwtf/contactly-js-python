@@ -11,7 +11,7 @@ import { FaTrash as DeleteIcon } from 'react-icons/fa';
 import EditContactModal from './EditContactModal';
 
 const ContactCard = ({ contact }) => {
-  const { name, phone, occupation, address, gender, img_url } = contact;
+  const { name, phone, occupation, address, gender, imgUrl } = contact;
 
   return (
     <Box
@@ -31,7 +31,7 @@ const ContactCard = ({ contact }) => {
               borderRadius="full"
               boxSize="50px"
               src={
-                img_url ||
+                imgUrl ||
                 `https://randomuser.me/api/portraits/${
                   gender === 'male' ? 'men' : 'women'
                 }/1.jpg`

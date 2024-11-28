@@ -1,17 +1,17 @@
 import {
   Box,
-  Flex,
   Button,
+  Container,
+  Flex,
+  Spacer,
   useColorMode,
   useColorModeValue,
-  Spacer,
-  Container,
 } from '@chakra-ui/react';
-import { IoMoon } from 'react-icons/io5';
 import { FaSun as LuSun } from 'react-icons/fa';
+import { IoMoon } from 'react-icons/io5';
 import AddContactModal from './AddContactModal';
 
-const Navbar = () => {
+const Navbar = ({ setContacts }) => {
   const { toggleColorMode } = useColorMode();
   const bg = useColorModeValue('gray.100', 'gray.900');
   const color = useColorModeValue('black', 'white');
@@ -26,7 +26,7 @@ const Navbar = () => {
           </Box>
           <Spacer />
 
-          <AddContactModal />
+          <AddContactModal setContacts={setContacts} />
 
           <Button onClick={toggleColorMode} bg={themeBtnBg}>
             {useColorModeValue(<IoMoon />, <LuSun />)}

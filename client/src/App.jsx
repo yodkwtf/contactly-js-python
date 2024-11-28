@@ -9,7 +9,7 @@ function App() {
 
   return (
     <Stack minH="100vh">
-      <Navbar />
+      <Navbar setContacts={setContacts} />
       <Container maxW="1200px" my={8} flex="1">
         <Stack spacing={4} textAlign="center">
           <Heading as="h1" size="xl">
