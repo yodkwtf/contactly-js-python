@@ -1,9 +1,12 @@
 import { Container, Heading, Stack, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 import ContactList from './components/ContactList';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 function App() {
+  const [contacts, setContacts] = useState([]);
+
   return (
     <Stack minH="100vh">
       <Navbar />
@@ -19,7 +22,7 @@ function App() {
         </Stack>
 
         <Stack mt={8}>
-          <ContactList />
+          <ContactList contacts={contacts} setContacts={setContacts} />
         </Stack>
       </Container>
       <Footer />

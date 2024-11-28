@@ -8,7 +8,16 @@ from models import Contact
 def get_contacts():
     contacts = Contact.query.all()
     result = [contact.to_json() for contact in contacts]
-    return jsonify(result), 200
+    return jsonify(
+        {
+            "success": True,
+            "data": {
+                "message": "Contacts fetched successfully",
+                "contacts": result,
+                "error": None,
+            },
+        }
+    )
 
 
 # Create a new contact entry
