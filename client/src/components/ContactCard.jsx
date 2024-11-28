@@ -87,7 +87,7 @@ const ContactCard = ({ contact, setContacts }) => {
           </Flex>
 
           <HStack spacing={0}>
-            <EditContactModal contact={contact} />
+            <EditContactModal contact={contact} setContacts={setContacts} />
             <IconButton
               icon={<DeleteIcon />}
               colorScheme="red"

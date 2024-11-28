@@ -29,7 +29,7 @@ def create_contact():
         # validations
         required_fields = ["name", "phone", "occupation", "address"]
         for field in required_fields:
-            if field not in data:
+            if field not in data or not data.get(field):
                 return (
                     jsonify(
                         {
@@ -106,6 +106,7 @@ def create_contact():
 @app.route("/api/contacts/<int:contact_id>", methods=["DELETE"])
 def delete_contact(contact_id):
     try:
+        # todo: Add empty data validation
         contact = Contact.query.get(contact_id)
         if contact is None:
             return (

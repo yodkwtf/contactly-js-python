@@ -63,6 +63,15 @@ const AddContactModal = ({ setContacts }) => {
 
       // add contact to the list
       setContacts((prevContacts) => [data.data.contact, ...prevContacts]);
+
+      // clear the form data
+      setFormData({
+        name: '',
+        phone: '',
+        occupation: '',
+        address: '',
+        gender: '',
+      });
     } catch (err) {
       toast({
         title: 'An error occurred.',
@@ -75,13 +84,6 @@ const AddContactModal = ({ setContacts }) => {
       console.error(err);
     } finally {
       setIsLoading(false);
-      setFormData({
-        name: '',
-        phone: '',
-        occupation: '',
-        address: '',
-        gender: '',
-      });
     }
   };
 
