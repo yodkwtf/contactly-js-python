@@ -5,13 +5,53 @@ import {
   IconButton,
   Image,
   Text,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
 import { FaTrash as DeleteIcon } from 'react-icons/fa';
 import EditContactModal from './EditContactModal';
 
-const ContactCard = ({ contact }) => {
+const ContactCard = ({ contact, setContacts }) => {
   const { name, phone, occupation, address, gender, imgUrl } = contact;
+
+  const toast = useToast();
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/contacts/${id}`, {
+        method: 'DELETE',
+      });
+
+      // TODO: Handle error based on data return from backend
+      if (!res.ok) {
+        throw new Error('Failed to delete contact');
+      }
+
+      toast({
+        title: 'Contact deleted.',
+        description: 'Contact deleted successfully.',
+        status: 'success',
+        duration: 2000,
+        position: 'top-center',
+        isClosable: true,
+      });
+
+      // Update the UI by calling the setContacts function
+      setContacts((prevContacts) =>
+        prevContacts.filter((contact) => contact.id !== id)
+      );
+    } catch (error) {
+      toast({
+        title: 'An error occurred.',
+        description: error.message,
+        status: 'error',
+        duration: 4000,
+        position: 'top-center',
+        isClosable: true,
+      });
+      console.error('Error deleting contact:', error);
+    }
+  };
 
   return (
     <Box
@@ -54,6 +94,7 @@ const ContactCard = ({ contact }) => {
               variant="ghost"
               size="sm"
               aria-label="Delete"
+              onClick={() => handleDelete(contact.id)}
             />
           </HStack>
         </Flex>

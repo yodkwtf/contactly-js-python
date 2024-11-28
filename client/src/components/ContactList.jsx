@@ -10,6 +10,7 @@ const ContactList = ({ contacts, setContacts }) => {
     try {
       const response = await fetch('http://localhost:5000/api/contacts');
       const data = await response.json();
+      // TODO: Handle error based on data return from backend
       if (!response.ok) {
         throw new Error(data.message || 'Could not fetch contacts.');
       }
@@ -47,7 +48,11 @@ const ContactList = ({ contacts, setContacts }) => {
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={8}>
       {contacts?.map((contact) => (
-        <ContactCard key={contact.id} contact={contact} />
+        <ContactCard
+          setContacts={setContacts}
+          key={contact.id}
+          contact={contact}
+        />
       ))}
     </SimpleGrid>
   );

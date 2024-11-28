@@ -46,6 +46,7 @@ const AddContactModal = ({ setContacts }) => {
       });
       const data = await res.json();
 
+      // TODO: Handle error based on data return from backend
       if (!res.ok) {
         throw new Error(data.message || 'Something went wrong!');
       }
