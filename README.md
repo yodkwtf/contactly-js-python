@@ -4,11 +4,11 @@ Contactly is a simple online phonebook directory that allows users to store and 
 
 <!-- TODO: Update the tech stack -->
 
-## Live Preview [COMING SOON]
+## Live Preview
 
-Please visit [Contactly - Live](https://contactly.onrender.com) to see the site's live preview.
+Please visit [Contactly - Live](https://contactly-bjxv.onrender.com) to see the site's live preview.
 
-![Contactly Preview](./cover.png)
+![Contactly Preview](./client/public/cover.png)
 
 ## Getting Started [COMING SOON]
 
