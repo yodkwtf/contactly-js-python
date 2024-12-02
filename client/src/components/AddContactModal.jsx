@@ -37,6 +37,7 @@ const AddContactModal = ({ setContacts }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
+      // TODO: add API URL as a constant
       const res = await fetch('http://localhost:5000/api/contacts', {
         method: 'POST',
         headers: {
