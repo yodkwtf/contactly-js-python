@@ -1,6 +1,7 @@
 import { Flex, SimpleGrid, Spinner } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import ContactCard from './ContactCard';
+import { BASE_URL } from '../config/constants';
 
 const ContactList = ({ contacts, setContacts }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -8,7 +9,7 @@ const ContactList = ({ contacts, setContacts }) => {
   // Fetch contacts from the server
   const getContacts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/contacts');
+      const response = await fetch(`${BASE_URL}/contacts`);
       const data = await response.json();
       // TODO: Handle error based on data return from backend
       if (!response.ok) {

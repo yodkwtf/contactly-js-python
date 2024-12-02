@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { BiAddToQueue } from 'react-icons/bi';
+import { BASE_URL } from '../config/constants';
 
 const AddContactModal = ({ setContacts }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -38,7 +39,7 @@ const AddContactModal = ({ setContacts }) => {
     setIsLoading(true);
     try {
       // TODO: add API URL as a constant
-      const res = await fetch('http://localhost:5000/api/contacts', {
+      const res = await fetch(`${BASE_URL}/contacts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

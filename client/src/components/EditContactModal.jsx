@@ -17,6 +17,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { FaEdit as EditIcon } from 'react-icons/fa';
+import { BASE_URL } from '../config/constants';
 
 const EditContactModal = ({ contact, setContacts }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,16 +30,13 @@ const EditContactModal = ({ contact, setContacts }) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/contacts/${contact.id}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch(`${BASE_URL}/contacts/${contact.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await res.json();
 
       // TODO: Handle error based on data return from backend

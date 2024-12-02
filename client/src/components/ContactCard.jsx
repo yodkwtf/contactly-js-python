@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { FaTrash as DeleteIcon } from 'react-icons/fa';
 import EditContactModal from './EditContactModal';
+import { BASE_URL } from '../config/constants';
 
 const ContactCard = ({ contact, setContacts }) => {
   const { name, phone, occupation, address, gender, imgUrl } = contact;
@@ -18,7 +19,7 @@ const ContactCard = ({ contact, setContacts }) => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/contacts/${id}`, {
+      const res = await fetch(`${BASE_URL}/contacts/${id}`, {
         method: 'DELETE',
       });
 
