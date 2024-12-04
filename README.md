@@ -48,7 +48,7 @@ To get a local copy up and running follow these simple steps:
 
 5. Open your browser and visit [http://localhost:3000](http://localhost:3000) to see the application running.
 
-_**Note**: Make sure to create a virtual environment for the server and activate it before running the server. The instructions to create a virtual environment are provided in the [notes.md](./notes.md) file._
+_**Note**: Make sure to create a virtual environment for the server and activate it before running it. The [notes.md](./notes.md) file provides the instructions to create a virtual environment._
 
 ## Contributing
 
@@ -59,7 +59,3 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 - **Email:** [48durgesh.kumar@gmail.com](mailto:48durgesh.kumar@gmail.com)
 - **LinkedIn:** [Durgesh Chaudhary](https://www.linkedin.com/in/durgesh-chaudhary/)
 - **GitHub:** [@yodkwtf](https://github.com/yodkwtf)
-
-```
-
-```
