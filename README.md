@@ -52,7 +52,9 @@ _**Note**: Make sure to create a virtual environment for the server and activate
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request for any updates.
+As of now, I do not have any plans to add any more enhancements to this project. However, if you would like to contribute to the project, feel free to fork the repository and submit a pull request.
+
+Also, please check out the issues section to see if there are any open issues that you can help with.
 
 ## Contact
 
