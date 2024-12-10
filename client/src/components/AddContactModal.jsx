@@ -16,6 +16,7 @@ import {
   Textarea,
   useDisclosure,
   useToast,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { BiAddToQueue } from 'react-icons/bi';
@@ -33,9 +34,32 @@ const AddContactModal = ({ setContacts }) => {
   });
 
   const toast = useToast();
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name || formData.name.trim().length < 3) {
+      newErrors.name = 'Name must be at least 3 characters long.';
+    }
+    if (!/^\d+$/.test(formData.phone)) {
+      newErrors.phone = 'Phone number must be a valid 10-digit number.';
+    }
+    if (!formData.occupation || formData.occupation.trim().length < 3) {
+      newErrors.occupation = 'Occupation must be at least 3 characters long.';
+    }
+    if (!formData.address || formData.address.trim().length < 5) {
+      newErrors.address = 'Address must be at least 5 characters long.';
+    }
+    if (!formData.gender) {
+      newErrors.gender = 'Gender is required.';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return;
     setIsLoading(true);
     try {
       // TODO: add API URL as a constant
@@ -104,7 +128,7 @@ const AddContactModal = ({ setContacts }) => {
             <ModalCloseButton />
 
             <ModalBody pb={6}>
-              <FormControl>
+              <FormControl isInvalid={errors.name}>
                 <FormLabel>Name</FormLabel>
                 <Input
                   value={formData.name}
@@ -113,8 +137,11 @@ const AddContactModal = ({ setContacts }) => {
                   }
                   placeholder="John Doe"
                 />
+                <FormErrorMessage>{errors.name}</FormErrorMessage>
+              </FormControl>
 
-                <FormLabel mt={4}>Phone</FormLabel>
+              <FormControl isInvalid={errors.phone} mt={4}>
+                <FormLabel>Phone</FormLabel>
                 <Input
                   value={formData.phone}
                   onChange={(e) =>
@@ -122,8 +149,11 @@ const AddContactModal = ({ setContacts }) => {
                   }
                   placeholder="9991119119"
                 />
+                <FormErrorMessage>{errors.phone}</FormErrorMessage>
+              </FormControl>
 
-                <FormLabel mt={4}>Occupation</FormLabel>
+              <FormControl isInvalid={errors.occupation} mt={4}>
+                <FormLabel>Occupation</FormLabel>
                 <Input
                   value={formData.occupation}
                   onChange={(e) =>
@@ -131,8 +161,11 @@ const AddContactModal = ({ setContacts }) => {
                   }
                   placeholder="Detective"
                 />
+                <FormErrorMessage>{errors.occupation}</FormErrorMessage>
+              </FormControl>
 
-                <FormLabel mt={4}>Address</FormLabel>
+              <FormControl isInvalid={errors.address} mt={4}>
+                <FormLabel>Address</FormLabel>
                 <Textarea
                   value={formData.address}
                   onChange={(e) =>
@@ -140,8 +173,11 @@ const AddContactModal = ({ setContacts }) => {
                   }
                   placeholder="Gotham City"
                 />
+                <FormErrorMessage>{errors.address}</FormErrorMessage>
+              </FormControl>
 
-                <FormLabel mt={4}>Gender</FormLabel>
+              <FormControl isInvalid={errors.gender} mt={4}>
+                <FormLabel>Gender</FormLabel>
                 <RadioGroup>
                   <Stack direction="row">
                     <Radio
@@ -162,6 +198,7 @@ const AddContactModal = ({ setContacts }) => {
                     </Radio>
                   </Stack>
                 </RadioGroup>
+                <FormErrorMessage>{errors.gender}</FormErrorMessage>
               </FormControl>
             </ModalBody>
 
