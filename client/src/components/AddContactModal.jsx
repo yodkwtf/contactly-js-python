@@ -21,6 +21,7 @@ import {
 import { useState } from 'react';
 import { BiAddToQueue } from 'react-icons/bi';
 import { BASE_URL } from '../config/constants';
+import validateContactForm from '../utils/contactValidation';
 
 const AddContactModal = ({ setContacts }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -37,22 +38,7 @@ const AddContactModal = ({ setContacts }) => {
   const [errors, setErrors] = useState({});
 
   const validate = () => {
-    const newErrors = {};
-    if (!formData.name || formData.name.trim().length < 3) {
-      newErrors.name = 'Name must be at least 3 characters long.';
-    }
-    if (!/^\d+$/.test(formData.phone)) {
-      newErrors.phone = 'Phone number must be a valid 10-digit number.';
-    }
-    if (!formData.occupation || formData.occupation.trim().length < 3) {
-      newErrors.occupation = 'Occupation must be at least 3 characters long.';
-    }
-    if (!formData.address || formData.address.trim().length < 5) {
-      newErrors.address = 'Address must be at least 5 characters long.';
-    }
-    if (!formData.gender) {
-      newErrors.gender = 'Gender is required.';
-    }
+    const newErrors = validateContactForm(formData);
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
